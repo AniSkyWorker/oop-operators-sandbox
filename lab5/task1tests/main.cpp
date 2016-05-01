@@ -16,7 +16,7 @@ using boost::unit_test::test_unit_type;
 class SpecLogFormatter :
 	public boost::unit_test::output::compiler_log_formatter
 {
-	virtual void test_unit_start(std::ostream &os, boost::unit_test::test_unit const& tu) override
+	virtual void test_unit_start(std::ostream & os, boost::unit_test::test_unit const&  tu) override
 	{
 		// перед запуском test unit-а выводим имя test unit-а, заменяя символ подчеркивания на пробел
 		os << string(m_indent, ' ') << boost::replace_all_copy(tu.p_name.get(), "_", " ") << endl;
@@ -27,7 +27,7 @@ class SpecLogFormatter :
 
 	
 
-	virtual void test_unit_finish(ostream & /*os*/, boost::unit_test::test_unit const& /*tu*/, unsigned long /*elapsed*/) override
+	virtual void test_unit_finish(ostream &  /*os*/, boost::unit_test::test_unit const&  /*tu*/, unsigned long /*elapsed*/) override
 	{
 		// по окончании test unit-а уменьшаем отступ
 		m_indent -= 2;
@@ -49,5 +49,5 @@ boost::unit_test::test_suite* init_unit_test_suite(int /*argc*/, char* /*argv*/[
 int main(int argc, char* argv[])
 {
 	// Запускаем тесты, передавая параметры командной строки и кастомную функцию инициализации тестов
-	return boost::unit_test::unit_test_main(&init_unit_test_suite, argc, argv);
+	return boost::unit_test::unit_test_main(& init_unit_test_suite, argc, argv);
 }
