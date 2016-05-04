@@ -16,11 +16,11 @@ public:
 	const CRational operator -() const;
 	const CRational operator +() const;
 
-	CRational &  operator +=(const CRational &  rValue);
-	CRational &  operator -=(const CRational &  rValue);
+	CRational & operator +=(const CRational & rValue);
+	CRational & operator -=(const CRational & rValue);
 
-	CRational &  operator *=(const CRational &  rValue);
-	CRational &  operator /=(const CRational &  rValue);
+	CRational & operator *=(const CRational & rValue);
+	CRational & operator /=(const CRational & rValue);
 
 private:
 	int m_numerator;
@@ -31,10 +31,10 @@ private:
 
 unsigned GCD(unsigned a, unsigned b);
 
-CRational const operator +(const CRational &  rational1, const CRational &  rational2);
-CRational const operator -(const CRational &  rational1, const CRational &  rational2);
-CRational const operator *(const CRational &  rational1, const CRational &  rational2);
-CRational const operator /(const CRational &  rational1, const CRational &  rational2);
+CRational const operator +(const CRational & rational1, const CRational & rational2);
+CRational const operator -(const CRational & rational1, const CRational & rational2);
+CRational const operator *(const CRational & rational1, const CRational & rational2);
+CRational const operator /(const CRational & rational1, const CRational & rational2);
 
 bool const operator ==(const CRational & rational1, const CRational & rational2);
 bool const operator !=(const CRational & rational1, const CRational & rational2);
@@ -45,5 +45,5 @@ bool const operator <=(const CRational & rational1, const CRational & rational2)
 bool const operator >(const CRational & rational1, const CRational & rational2);
 bool const operator >=(const CRational & rational1, const CRational & rational2);
 
-std::ostream &  operator <<(std::ostream & strm, const CRational & rational);
-std::istream &  operator >>(std::istream & strm, CRational & rational);
+std::ostream & operator <<(std::ostream & strm, const CRational & rational);
+std::istream & operator >>(std::istream & strm, CRational & rational);

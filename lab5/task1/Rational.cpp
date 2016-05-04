@@ -47,7 +47,7 @@ unsigned GCD(unsigned a, unsigned b)
 	return (a != 0) ? a : 1;
 }
 
-double CRational::ToDouble()const
+double CRational::ToDouble() const
 {
 	return m_numerator / m_denominator;
 }
@@ -57,7 +57,7 @@ const CRational CRational::operator-()const
 	return CRational(-m_numerator, m_denominator);
 }
 
-const CRational CRational::operator+()const
+const CRational CRational::operator+() const
 {
 	return *this;
 }
@@ -74,13 +74,13 @@ CRational & CRational::operator -=(const CRational & rValue)
 	return *this;
 }
 
-CRational &  CRational::operator *=(const CRational & rValue)
+CRational & CRational::operator *=(const CRational & rValue)
 {
 	*this = *this * rValue;
 	return *this;
 }
 
-CRational &  CRational::operator /=(const CRational & rValue)
+CRational & CRational::operator /=(const CRational & rValue)
 {
 	*this = *this / rValue;
 	return *this;
