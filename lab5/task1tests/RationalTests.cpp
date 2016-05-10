@@ -56,6 +56,16 @@ BOOST_AUTO_TEST_SUITE(Rational_number)
 		auto compoundFraction = rational.ToCompoundFraction();
 		BOOST_CHECK_EQUAL(rational.ToCompoundFraction().first, 2);
 		VerifyRational(compoundFraction.second, 1, 4);
+
+		rational = CRational(6, 7);
+		compoundFraction = rational.ToCompoundFraction();
+		BOOST_CHECK_EQUAL(rational.ToCompoundFraction().first, 0);
+		VerifyRational(compoundFraction.second, 6, 7);
+
+		rational = CRational(1, 7);
+		compoundFraction = rational.ToCompoundFraction();
+		BOOST_CHECK_EQUAL(rational.ToCompoundFraction().first, 0);
+		VerifyRational(compoundFraction.second, 1, 7);
 	}
 
 	BOOST_AUTO_TEST_CASE(can_get_compound_negative_fraction)

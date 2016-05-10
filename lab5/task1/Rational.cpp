@@ -64,7 +64,9 @@ const CRational CRational::operator+() const
 
 CRational & CRational::operator +=(const CRational & rValue)
 {
-	*this = *this + rValue;
+	m_numerator = (m_numerator * rValue.GetDenominator()) + (rValue.GetNumerator() * m_denominator);
+	m_denominator *= rValue.GetDenominator();
+	Normalize();
 	return *this;
 }
 
@@ -76,27 +78,32 @@ CRational & CRational::operator -=(const CRational & rValue)
 
 CRational & CRational::operator *=(const CRational & rValue)
 {
-	*this = *this * rValue;
+	m_numerator *= rValue.GetNumerator();
+	m_denominator *= rValue.GetDenominator();
+	Normalize();
 	return *this;
 }
 
 CRational & CRational::operator /=(const CRational & rValue)
 {
-	*this = *this / rValue;
+	m_numerator *= rValue.GetDenominator();
+	m_denominator *= rValue.GetNumerator();
+	if (m_denominator == 0)
+	{
+		throw std::invalid_argument("Denominator must not be equal to zero");
+	}
+	Normalize();
 	return *this;
 }
 
 const CRational operator *(const CRational & rational1, const CRational & rational2)
 {
-	return (CRational(rational1.GetNumerator() * rational2.GetNumerator()
-		, rational1.GetDenominator() * rational2.GetDenominator()));
+	return (CRational(rational1) *= rational2);
 }
 
 const CRational operator +(const CRational & rational1, const CRational & rational2)
 {
-	return (CRational((rational1.GetNumerator() * rational2.GetDenominator())
-		+ (rational2.GetNumerator() * rational1.GetDenominator()),
-		rational1.GetDenominator() * rational2.GetDenominator()));
+	return (CRational(rational1) += rational2);
 }
 
 const CRational operator -(const CRational & rational1, const CRational & rational2)
@@ -106,8 +113,7 @@ const CRational operator -(const CRational & rational1, const CRational & ration
 
 const CRational operator /(const CRational & rational1, const CRational & rational2)
 {
-	return (CRational(rational1.GetNumerator() * rational2.GetDenominator()
-		, rational1.GetDenominator() * rational2.GetNumerator()));
+	return (CRational(rational1) /= rational2);
 }
 
 bool const operator ==(const CRational & rational1, const CRational & rational2)
